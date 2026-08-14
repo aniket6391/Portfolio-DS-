@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aniket Sharma | Online Quiz Portal</title>
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+<style>
+:root {
+  --bg: #f6fbff;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent1: #0ea5a3;
+  --accent2: #0b74ff;
+  --accent-grad: linear-gradient(135deg, var(--accent2), var(--accent1));
+  --shadow: 0 8px 30px rgba(7, 22, 48, 0.08);
+  --radius: 14px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+body {
+  background: radial-gradient(800px 500px at 10% 10%, rgba(11, 116, 255, 0.06), transparent),
+    radial-gradient(800px 500px at 90% 90%, rgba(14, 165, 163, 0.05), transparent), var(--bg);
+  color: #0b1220;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 36px 18px;
+}
+.app {
+  width: 100%;
+  max-width: 1200px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--accent-grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  box-shadow: var(--shadow);
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #04203a;
+}
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 28px;
+}
+.panel {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+.field {
+  margin-bottom: 12px;
+}
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #e6eef8;
+  border-radius: 10px;
+  background: #fbfeff;
+  font-size: 15px;
+}
+.btn {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent-grad);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn.secondary {
+  background: transparent;
+  color: var(--accent2);
+  border: 1px solid rgba(11, 116, 255, 0.2);
+}
+.back-btn {
+  background: transparent;
+  color: var(--accent2);
+  border: 1px solid rgba(11, 116, 255, 0.2);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.back-btn:hover {
+  background: var(--accent2);
+  color: #fff;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.card {
+  border-radius: 14px;
+  padding: 18px;
+  background: linear-gradient(180deg, #fff, #fbfdff);
+  box-shadow: 0 8px 25px rgba(2, 6, 23, 0.05);
+  cursor: pointer;
+  transition: 0.22s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.08);
+}
+.card h3 {
+  color: var(--accent2);
+  margin-bottom: 6px;
+}
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+.question {
+  margin-top: 12px;
+  font-size: 17px;
+}
+.option {
+  padding: 12px 14px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid #e7f2ff;
+  background: #fbfeff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.option.correct {
+  background: #e6ffef;
+  border-color: #8be3b0;
+  color: #044c2e;
+}
+.option.wrong {
+  background: #fff0f0;
+  border-color: #ffb3b3;
+  color: #6a2121;
+}
+.review {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fbfdff;
+  max-height: 260px;
+  overflow: auto;
+}
+.rating {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+.rating i {
+  font-size: 26px;
+  color: #c7d3e6;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.rating i.active {
+  color: #ffd166;
+}
+@media (max-width: 980px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">
+      <div class="logo">AS</div>
+      <div>
+        <div class="title">Aniket Sharma — Quiz Portal</div>
+        <div class="subtitle">Check your basic Knowledge here... ✍</div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <!-- FORM -->
+      <div class="panel" id="formPanel">
+        <h2>Start Quiz</h2>
+        <p>Fill your details before starting.</p>
+        <div class="field"><input id="name" placeholder="Full Name"></div>
+        <div class="field"><input id="contact" placeholder="Contact Number"></div>
+        <div class="field"><input id="college" placeholder="College Name"></div>
+        <div class="field"><input id="reg" placeholder="Registration Number"></div>
+        <button class="btn" id="formNext">Submit & Continue</button>
+      </div>
+
+      <!-- HOME -->
+      <div class="panel" id="homePanel" style="display:none">
+        <button class="back-btn" id="backToForm">← Back</button>
+        <h2>Choose a Quiz</h2>
+        <div style="font-size:14px;color:var(--muted)">20 Questions each – MCQ / Fill</div>
+        <div class="grid" style="margin-top:16px">
+          <div class="card" onclick="startQuiz('math')"><h3>🧮 Mathematics</h3><p>Algebra, Geometry, Trigonometry</p></div>
+          <div class="card" onclick="startQuiz('english')"><h3>📘 English</h3><p>Grammar & Vocabulary</p></div>
+          <div class="card" onclick="startQuiz('gk')"><h3>🎮 General Knowledge</h3><p>Current Affairs & World</p></div>
+          <div class="card" onclick="startQuiz('science')"><h3>🧪 General Science</h3><p>Fill-in-the-blanks type</p></div>
+        </div>
+      </div>
+
+      <!-- QUIZ -->
+      <div class="panel" id="quizPanel" style="display:none">
+        <button class="back-btn" id="backToHome">← Back</button>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <h3 id="quizTitle">Quiz</h3>
+            <div style="font-size:13px;color:var(--muted)">
+              Question <span id="qIndex">1</span> of <span id="qTotal">20</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--muted)">User: <b id="showUser">—</b></div>
+        </div>
+        <div class="question" id="questionArea"></div>
+        <div id="optionsArea"></div>
+        <div style="margin-top:12px">
+          <button class="btn" id="nextBtn" style="display:none">Next</button>
+          <button class="btn secondary" id="quitBtn">Quit</button>
+        </div>
+        <div class="review" id="reviewArea" style="display:none"></div>
+        <div id="ratingArea" style="display:none;margin-top:12px">
+          <div style="font-weight:700;color:var(--accent2)">Rate this quiz</div>
+          <div class="rating" id="ratingStars">
+            <i class="bx bxs-star" data-val="1"></i>
+            <i class="bx bxs-star" data-val="2"></i>
+            <i class="bx bxs-star" data-val="3"></i>
+            <i class="bx bxs-star" data-val="4"></i>
+            <i class="bx bxs-star" data-val="5"></i>
+          </div>
+          <button class="btn" id="saveRating" style="margin-top:8px">Save Rating</button>
+          <button class="back-btn" id="backToHomeFromReview">← Back to Home</button>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="panel">
+        <h4 style="color:var(--accent2)">How it works</h4>
+        <p>Fill form → Pick quiz → Answer 20 questions → See results → Rate quiz</p>
+      </div>
+    </aside>
+  </main>
+</div>
+
+<script>
+/* ========== QUIZ QUESTION BANK (20 Q EACH) ========== */
+const quizBank = {
+  math: [
+    { q: "2+2=?", a: ["3", "4", "5", "6"], c: "4" },
+    { q: "Square of 5?", a: ["10", "20", "25", "15"], c: "25" },
+    { q: "Root of 81?", a: ["9", "8", "7", "6"], c: "9" },
+    { q: "12×12=?", a: ["124", "142", "144", "154"], c: "144" },
+    { q: "100/25=?", a: ["2", "3", "4", "5"], c: "4" },
+    { q: "Angle sum of triangle?", a: ["90°", "120°", "180°", "360°"], c: "180°" },
+    { q: "Area of circle?", a: ["πr²", "2πr", "r²", "πd"], c: "πr²" },
+    { q: "10% of 200=?", a: ["10", "20", "30", "40"], c: "20" },
+    { q: "7×8=?", a: ["54", "56", "58", "60"], c: "56" },
+    { q: "15²=?", a: ["150", "225", "250", "200"], c: "225" },
+    { q: "(3+2)×4=?", a: ["10", "15", "20", "25"], c: "20" },
+    { q: "1 km = ? m", a: ["10", "100", "1000", "10000"], c: "1000" },
+    { q: "Prime number?", a: ["4", "6", "8", "7"], c: "7" },
+    { q: "Perimeter of square?", a: ["2a", "3a", "4a", "a²"], c: "4a" },
+    { q: "0 × 15 =", a: ["0", "15", "1", "undefined"], c: "0" },
+    { q: "10³=?", a: ["100", "1000", "10000", "10"], c: "1000" },
+    { q: "HCF of 12,18?", a: ["2", "3", "6", "9"], c: "6" },
+    { q: "LCM of 3,5?", a: ["8", "10", "15", "20"], c: "15" },
+    { q: "Simplify 9+6÷3", a: ["5", "7", "11", "18"], c: "11" },
+    { q: "Smallest prime?", a: ["1", "2", "3", "5"], c: "2" }
+  ],
+  english: [
+    { q: "Past of go?", a: ["goed", "went", "gone", "go"], c: "went" },
+    { q: "Synonym of happy?", a: ["sad", "joyful", "tired", "mad"], c: "joyful" },
+    { q: "Antonym of hot?", a: ["cold", "warm", "heat", "freeze"], c: "cold" },
+    { q: "Plural of child?", a: ["childs", "children", "childes", "child"], c: "children" },
+    { q: "Opposite of tall?", a: ["short", "tiny", "small", "low"], c: "short" },
+    { q: "Verb in 'She runs fast'?", a: ["She", "runs", "fast", "none"], c: "runs" },
+    { q: "Past of eat?", a: ["eaten", "ate", "eats", "eated"], c: "ate" },
+    { q: "'Big' comparative form?", a: ["biger", "bigger", "biggest", "most big"], c: "bigger" },
+    { q: "Noun of 'beautiful'?", a: ["beautify", "beauty", "beautifulness", "beau"], c: "beauty" },
+    { q: "Adjective of 'success'?", a: ["successed", "successful", "succeed", "successive"], c: "successful" },
+    { q: "Synonym of 'fast'?", a: ["quick", "slow", "lazy", "move"], c: "quick" },
+    { q: "'They have ___ book'?", a: ["a", "an", "the", "no"], c: "a" },
+    { q: "Past of write?", a: ["writed", "written", "wrote", "write"], c: "wrote" },
+    { q: "Opposite of high?", a: ["low", "down", "under", "less"], c: "low" },
+    { q: "Correct spelling?", a: ["definately", "definitely", "difinately", "definate"], c: "definitely" },
+    { q: "Pronoun of 'Aniket'?", a: ["he", "she", "it", "they"], c: "he" },
+    { q: "'Book' is a ___ noun.", a: ["proper", "common", "abstract", "collective"], c: "common" },
+    { q: "Antonym of early?", a: ["late", "soon", "fast", "quick"], c: "late" },
+    { q: "Past of play?", a: ["played", "plays", "play", "playd"], c: "played" },
+    { q: "Opposite of good?", a: ["bad", "evil", "ugly", "poor"], c: "bad" }
+  ],
+  gk: [
+    { q: "Capital of India?", a: ["Delhi", "Mumbai", "Chennai", "Kolkata"], c: "Delhi" },
+    { q: "Largest planet?", a: ["Mars", "Jupiter", "Saturn", "Neptune"], c: "Jupiter" },
+    { q: "National animal of India?", a: ["Lion", "Tiger", "Elephant", "Leopard"], c: "Tiger" },
+    { q: "Currency of Japan?", a: ["Yen", "Won", "Dollar", "Baht"], c: "Yen" },
+    { q: "Who invented light bulb?", a: ["Newton", "Edison", "Tesla", "Einstein"], c: "Edison" },
+    { q: "Taj Mahal built by?", a: ["Akbar", "Shah Jahan", "Aurangzeb", "Babur"], c: "Shah Jahan" },
+    { q: "Sun rises in?", a: ["West", "East", "North", "South"], c: "East" },
+    { q: "Largest ocean?", a: ["Atlantic", "Indian", "Pacific", "Arctic"], c: "Pacific" },
+    { q: "How many continents?", a: ["5", "6", "7", "8"], c: "7" },
+    { q: "National bird of India?", a: ["Peacock", "Sparrow", "Crow", "Eagle"], c: "Peacock" },
+    { q: "First president of India?", a: ["Nehru", "Rajendra Prasad", "Patel", "Radhakrishnan"], c: "Rajendra Prasad" },
+    { q: "Largest desert?", a: ["Sahara", "Thar", "Gobi", "Arabian"], c: "Sahara" },
+    { q: "World's longest river?", a: ["Nile", "Amazon", "Ganga", "Yangtze"], c: "Nile" },
+    { q: "Olympics held every?", a: ["2", "3", "4", "5"], c: "4" },
+    { q: "Planet with rings?", a: ["Earth", "Mars", "Saturn", "Venus"], c: "Saturn" },
+    { q: "Current PM of India (2025)?", a: ["Modi", "Gandhi", "Singh", "Kejriwal"], c: "Modi" },
+    { q: "Smallest country?", a: ["Vatican", "Monaco", "Malta", "Nepal"], c: "Vatican" },
+    { q: "Largest state in India?", a: ["UP", "MP", "Rajasthan", "Gujarat"], c: "Rajasthan" },
+    { q: "World's highest mountain?", a: ["K2", "Everest", "Kangchenjunga", "Makalu"], c: "Everest" },
+    { q: "National flower of India?", a: ["Rose", "Lily", "Lotus", "Sunflower"], c: "Lotus" }
+  ],
+  science: [
+    { q: "Water formula is ____.", type: "fill", c: "h2o" },
+    { q: "Plants need ____ for photosynthesis.", type: "fill", c: "carbon dioxide" },
+    { q: "Human blood color is ____.", type: "fill", c: "red" },
+    { q: "Earth revolves around the ____.", type: "fill", c: "sun" },
+    { q: "Gas used in respiration is ____.", type: "fill", c: "oxygen" },
+    { q: "Process of water cycle is ____.", type: "fill", c: "evaporation" },
+    { q: "Solid to gas is ____.", type: "fill", c: "sublimation" },
+    { q: "Boiling point of water ____°C.", type: "fill", c: "100" },
+    { q: "Force measured in ____.", type: "fill", c: "newton" },
+    { q: "Sun is a ____.", type: "fill", c: "star" },
+    { q: "Heart pumps ____.", type: "fill", c: "blood" },
+    { q: "Gas exhaled by humans ____.", type: "fill", c: "carbon dioxide" },
+    { q: "Smallest unit of life ____.", type: "fill", c: "cell" },
+    { q: "Energy of motion ____.", type: "fill", c: "kinetic energy" },
+    { q: "Plants prepare food by ____.", type: "fill", c: "photosynthesis" },
+    { q: "Humans breathe using ____.", type: "fill", c: "lungs" },
+    { q: "Earth’s satellite ____.", type: "fill", c: "moon" },
+    { q: "Planets in solar system ____.", type: "fill", c: "8" },
+    { q: "Freezing point of water ____°C.", type: "fill", c: "0" },
+    { q: "Inventor of telephone ____.", type: "fill", c: "alexander graham bell" }
+  ]
+};
+
+/* ========== QUIZ LOGIC ========== */
+let currentQuiz = null, qIndex = 0, score = 0, userName = "";
+
+const formPanel = document.getElementById("formPanel");
+const homePanel = document.getElementById("homePanel");
+const quizPanel = document.getElementById("quizPanel");
+const showUser = document.getElementById("showUser");
+const quizTitle = document.getElementById("quizTitle");
+const qTotal = document.getElementById("qTotal");
+const qIdx = document.getElementById("qIndex");
+const questionArea = document.getElementById("questionArea");
+const optionsArea = document.getElementById("optionsArea");
+const nextBtn = document.getElementById("nextBtn");
+const reviewArea = document.getElementById("reviewArea");
+const ratingArea = document.getElementById("ratingArea");
+
+document.getElementById("formNext").onclick = () => {
+  const n = document.getElementById("name").value.trim();
+  const c = document.getElementById("contact").value.trim();
+  const col = document.getElementById("college").value.trim();
+  const r = document.getElementById("reg").value.trim();
+  if (!n || !c || !col || !r) return alert("Please fill all fields");
+  userName = n;
+  showUser.textContent = n;
+  formPanel.style.display = "none";
+  homePanel.style.display = "block";
+};
+
+document.getElementById("backToForm").onclick = () => {
+  homePanel.style.display = "none";
+  formPanel.style.display = "block";
+};
+document.getElementById("backToHome").onclick = () => {
+  quizPanel.style.display = "none";
+  homePanel.style.display = "block";
+};
+document.getElementById("backToHomeFromReview").onclick = () => {
+  quizPanel.style.display = "none";
+  homePanel.style.display = "block";
+};
+
+function startQuiz(k) {
+  currentQuiz = k;
+  qIndex = 0;
+  score = 0;
+  homePanel.style.display = "none";
+  quizPanel.style.display = "block";
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = quizBank[currentQuiz][qIndex];
+  qTotal.textContent = quizBank[currentQuiz].length;
+  qIdx.textContent = qIndex + 1;
+  quizTitle.textContent = currentQuiz.toUpperCase();
+  questionArea.textContent = q.q;
+  optionsArea.innerHTML = "";
+  nextBtn.style.display = "none";
+  reviewArea.style.display = "none";
+  ratingArea.style.display = "none";
+  if (q.type === "fill") {
+    const inp = document.createElement("input");
+    inp.className = "option";
+    inp.placeholder = "Type answer here";
+    const check = document.createElement("button");
+    check.className = "btn";
+    check.textContent = "Check";
+    check.onclick = () => {
+      if (inp.value.trim().toLowerCase() === q.c.toLowerCase()) {
+        inp.classList.add("correct");
+        score++;
+      } else inp.classList.add("wrong");
+      check.disabled = true;
+      nextBtn.style.display = "inline-block";
+    };
+    optionsArea.append(inp, check);
+  } else {
+    q.a.forEach(opt => {
+      const b = document.createElement("button");
+      b.className = "option";
+      b.textContent = opt;
+      b.onclick = () => {
+        [...optionsArea.children].forEach(x => (x.disabled = true));
+        if (opt === q.c) {
+          b.classList.add("correct");
+          score++;
+        } else b.classList.add("wrong");
+        nextBtn.style.display = "inline-block";
+      };
+      optionsArea.append(b);
+    });
+  }
+}
+
+nextBtn.onclick = () => {
+  qIndex++;
+  if (qIndex < quizBank[currentQuiz].length) renderQuestion();
+  else finishQuiz();
+};
+
+document.getElementById("quitBtn").onclick = () => {
+  quizPanel.style.display = "none";
+  homePanel.style.display = "block";
+};
+
+function finishQuiz() {
+  questionArea.textContent = "✅ Quiz Completed";
+  optionsArea.innerHTML = "";
+  nextBtn.style.display = "none";
+  reviewArea.style.display = "block";
+  reviewArea.innerHTML = `<b>Score: ${score}/${quizBank[currentQuiz].length}</b>`;
+  ratingArea.style.display = "block";
+}
+
+const stars = document.querySelectorAll(".rating i");
+stars.forEach(s => {
+  s.onclick = () => {
+    const v = +s.dataset.val;
+    stars.forEach((x, i) => x.classList.toggle("active", i < v));
+    alert("Thanks for rating " + v + "★");
+  };
+});
+
+document.getElementById("saveRating").onclick = () =>
+  alert("Rating saved successfully!");
+</script>
+</body>
+</html>

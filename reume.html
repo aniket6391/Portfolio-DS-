@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aniket Sharma | Resume</title>
+<style>
+body {
+  font-family: "Calibri", "Arial", sans-serif;
+  background: #fff;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 8.27in;              /* A4 width */
+  height: 11.69in;            /* A4 height */
+  box-sizing: border-box;
+  border: 2px solid #003366;
+  padding: 0.45in 0.6in;
+  background: #fff;
+  overflow: hidden;
+}
+.header {
+  border-bottom: 1.8px solid #003366;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+h1 {
+  color: #003366;
+  font-size: 26px;
+  margin: 0 0 4px 0;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 14.5px;
+  margin: 0;
+  line-height: 1.1;
+}
+a {
+  color: #003366;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+h2 {
+  color: #003366;
+  font-size: 16px;
+  border-bottom: 1px solid #003366;
+  margin: 8px 0 4px 0;
+}
+.section {
+  margin-bottom: 6px;
+  font-size: 14.5px;
+}
+.item-title { font-weight: bold; color: #000; }
+.item-sub { font-style: italic; }
+ul { margin: 2px 0 2px 18px; padding: 0; }
+li { margin-bottom: 2px; }
+.edu-entry { margin-bottom: 2px; }
+
+/* PRINT SETTINGS - STAYS ONE PAGE */
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  html, body {
+    width: 8.27in;
+    height: 11.69in;
+    overflow: hidden;
+  }
+  .container {
+    transform: scale(0.96); /* fits exactly one page */
+    transform-origin: top left;
+    width: 8.27in;
+    height: 11.69in;
+    page-break-inside: avoid;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-row">
+      <h1>Aniket Sharma</h1>
+    </div>
+    <div class="header-row">
+      <p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/aniketsharma6391/" target="_blank">www.linkedin.com/in/aniketsharma6391/</a></p>
+      <p><b>Email:</b> <a href="mailto:aniket6391915300@gmail.com">aniket6391915300@gmail.com</a></p>
+    </div>
+    <div class="header-row">
+      <p><b>GitHub:</b> <a href="https://github.com/wwhitedevil000" target="_blank">github.com/wwhitedevil000</a></p>
+      <p><b>Mobile:</b> +91 6391915300</p>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <h2>SKILLS</h2>
+    <p><b>Languages:</b> HTML, CSS, JavaScript, Python, SQL, OOPs</p>
+    <p><b>Tools/Platforms:</b> VS Code, Notepad , Oracle, GitHub</p>
+    <p><b>Soft Skills:</b> Critical thinking, Teamwork, Problem Solving, Adaptability</p>
+  </div>
+
+  <!-- TRAINING -->
+  <div class="section">
+    <h2>TRAINING</h2>
+    <p><b>Lovely Professional University</b> — <i>Computer Applications & Software Development
+    </i>
+    <span style="float:right;"></span></p>
+    <ul>
+      <li>Developed responsive portfolio websites using HTML, CSS, and JavaScript.</li>
+      <li>Learned API integration and backend basics in Python.</li>
+      <li>Improved UI/UX and code optimization for better performance.</li>
+    </ul>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <h2>PROJECTS</h2>
+    <p class="item-title">Online Quiz Portal <span style="float:right;"></span></p>
+    <p class="item-sub">HTML, CSS, JavaScript</p>
+    <ul>
+      <li>Developed an online quiz system with scoring and category-based questions.</li>
+      <li>Implemented responsive UI and dynamic result generation.</li>
+    </ul>
+
+    <p class="item-title">Weather App <span style="float:right;"></span></p>
+    <p class="item-sub">JavaScript, OpenWeather API</p>
+    <ul>
+      <li>Created a live weather app fetching data via OpenWeather API.</li>
+      <li>Displays temperature, humidity, and forecast with city search feature.</li>
+    </ul>
+
+    <p class="item-title">MindMatch Game <span style="float:right;"></span></p>
+    <p class="item-sub">JavaScript, Animation</p>
+    <ul>
+      <li>Built a fun memory-based matching game with score tracking.</li>
+      <li>Integrated animations for an engaging gameplay experience.</li>
+    </ul>
+  </div>
+
+  <!-- CERTIFICATES -->
+  <div class="section">
+    <h2>CERTIFICATES</h2>
+    <ul>
+      <li>Web Development — <i>Educba</i></li>
+      <li>Python — <i>Educba</i></li>
+      <li>Java Programming — <i>Educba</i></li>
+      <li>Cybersecurity — <i>SimpleLearn-SkillUp</i></li>
+      <li>Oracle Database — <i>Oracle Academy</i></li>
+    </ul>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <h2>EDUCATION</h2>
+    <div class="edu-entry">
+      <b>Lovely Professional University</b> — MCA (Master of Computer Applications)
+      <span style="float:right;">Phagwara, Punjab</span><br>
+      <i>Aug ’15 – Present</i>
+    </div>
+    <div class="edu-entry">
+      <b>Yashvantrao Chavan Maharashtra Open University</b> — BCA (Bachelor of Computer Applications)
+      <span style="float:right;">2021 – 2024</span>
+    </div>
+    <div class="edu-entry">
+      <b>UP Board – Class XII</b> — Science Stream
+      <span style="float:right;">2020</span><br>
+      <i>Percentage: 71.4%</i>
+    </div>
+    <div class="edu-entry">
+      <b>UP Board – Class X</b> — Science Stream
+      <span style="float:right;">2018</span><br>
+      <i>Percentage: 83.83%</i>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

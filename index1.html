@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Resume Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📄 Resume Builder</h1>
+
+    <form id="resumeForm">
+
+      <h2>Personal Info</h2>
+      <!-- ✅ Added Full Name input -->
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="phone" placeholder="Phone Number" required />
+      <input type="text" id="address" placeholder="Address" required />
+
+      <h2>Social Links</h2>
+      <input type="text" id="linkedin" placeholder="LinkedIn URL"  />
+      <input type="text" id="github" placeholder="GitHub URL" />
+      <input type="text" id="portfolio" placeholder="Portfolio / Website" />
+
+      <h2>Profile Summary</h2>
+      <textarea id="summary" placeholder="A short professional summary..."></textarea>
+
+      <h2>Education</h2>
+      <textarea id="education" placeholder="MCA - XYZ University - 2023–2025&#10;BCA - ABC College - 2020–2023"></textarea>
+
+      <h2>Skills</h2>
+      <textarea id="skills" placeholder="HTML&#10;CSS&#10;JavaScript&#10;React&#10;Python"></textarea>
+
+      <h2>Certificates</h2>
+      <textarea id="certificates" placeholder="AI Certificate&#10;Web Development Internship"></textarea>
+
+      <h2>Projects</h2>
+      <textarea id="projects" placeholder="Portfolio Website&#10;Weather App"></textarea>
+
+      <button type="submit">Generate Resume</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

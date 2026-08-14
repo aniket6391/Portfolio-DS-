@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MindMatch | Memory Game</title>
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<style>
+:root {
+  --accent1:#00d4ff;
+  --accent2:#0077ff;
+  --bg:#0b0e1a;
+  --card-bg:#11152b;
+  --text:#e2e8f0;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+body{
+  background:radial-gradient(circle at top,#081229,#030712);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  overflow:hidden;
+}
+h1{
+  font-size:2.4rem;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-align:center;
+}
+p{text-align:center;color:#a3b3d1;}
+.page{display:none;flex-direction:column;align-items:center;justify-content:center;animation:fadeIn .8s ease;}
+.entry{
+  background:rgba(17,21,43,0.8);
+  border:1px solid #1e2a4a;
+  padding:40px;
+  border-radius:16px;
+  box-shadow:0 0 25px rgba(0,150,255,.2);
+}
+.entry input{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #1e2a4a;
+  margin:12px 0;
+  width:250px;
+  background:#0f172a;
+  color:#e2e8f0;
+  font-size:1rem;
+}
+button{
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  border:none;
+  border-radius:8px;
+  color:#fff;
+  padding:10px 20px;
+  font-size:1rem;
+  cursor:pointer;
+  margin-top:10px;
+  transition:.3s;
+}
+button:hover{transform:scale(1.05);box-shadow:0 0 15px var(--accent2);}
+.game-board{
+  display:grid;
+  grid-template-columns:repeat(4,90px);
+  grid-gap:15px;
+  margin-top:25px;
+}
+.card{
+  width:90px;height:90px;background:var(--card-bg);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:32px;color:transparent;cursor:pointer;
+  box-shadow:0 0 10px rgba(0,0,0,.3);
+  transition:transform .4s,background .4s,color .4s;
+}
+.card.flipped{
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  color:#fff;transform:rotateY(180deg);
+}
+#message{margin-top:15px;font-size:1.1rem;color:#7dd3fc;}
+.back-btn{
+  background:#1e293b;margin-top:15px;font-size:.9rem;
+}
+#cheers{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;overflow:hidden;z-index:10;
+}
+.particle{
+  position:absolute;
+  width:12px;height:12px;
+  border-radius:50%;
+  opacity:0.9;
+  animation:floatUp 3s ease-out forwards;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) scale(0.6) rotate(0deg);opacity:1;}
+  100%{transform:translateY(-20vh) scale(1.2) rotate(720deg);opacity:0;}
+}
+footer{position:absolute;bottom:10px;font-size:.8rem;color:#5f6c8a;text-align:center;}
+@media(max-width:600px){
+  .game-board{grid-template-columns:repeat(3,80px);}
+  .card{width:80px;height:80px;font-size:26px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Entry Page -->
+<div id="entryPage" class="page entry" style="display:flex;">
+  <h1>🎮 MindMatch</h1>
+  <p>Test your memory — match all pairs to win!</p>
+  <input type="text" id="playerName" placeholder="Enter your name..." />
+  <button onclick="startGame()">Start Game</button>
+</div>
+
+<!-- Game Page -->
+<div id="gamePage" class="page">
+  <h1 id="welcomeText"></h1>
+  <div class="game-board" id="gameBoard"></div>
+  <p id="message"></p>
+  <button class="back-btn" onclick="goBack()">⬅ Back</button>
+  <button onclick="restartGame()">Restart</button>
+</div>
+
+<!-- Congratulations Page -->
+<div id="congratsPage" class="page">
+  <h1>🎉 Congratulations!</h1>
+  <p id="winnerText"></p>
+  <div id="cheers"></div>
+  <button onclick="backHome()">Back to Home</button>
+</div>
+
+<footer>© 2025 MindMatch | Designed by Aniket Sharma</footer>
+
+<script>
+const emojis=['🐱','🐱','🐶','🐶','🦊','🦊','🐻','🐻','🐼','🐼','🐧','🐧','🐸','🐸','🐯','🐯'];
+let shuffled=[],first=null,second=null,lock=false,matched=0,player='';
+
+function shuffle(a){return a.sort(()=>Math.random()-0.5);}
+function startGame(){
+  const name=document.getElementById("playerName").value.trim();
+  if(!name)return alert("Please enter your name!");
+  player=name;matched=0;
+  document.getElementById("entryPage").style.display="none";
+  document.getElementById("gamePage").style.display="flex";
+  document.getElementById("welcomeText").innerHTML=`Welcome, <span style="color:#38bdf8">${player}</span>!`;
+  createBoard();
+}
+function createBoard(){
+  shuffled=shuffle([...emojis]);
+  const board=document.getElementById("gameBoard");
+  board.innerHTML="";
+  shuffled.forEach((em,i)=>{
+    const c=document.createElement("div");
+    c.className="card";c.dataset.index=i;c.textContent=em;
+    c.onclick=()=>flipCard(c);board.appendChild(c);
+  });
+  document.getElementById("message").textContent="";
+}
+function flipCard(card){
+  if(lock||card.classList.contains("flipped"))return;
+  card.classList.add("flipped");
+  if(!first){first=card;}
+  else{second=card;lock=true;setTimeout(checkMatch,600);}
+}
+function checkMatch(){
+  if(first.textContent===second.textContent){
+    matched+=2;
+    if(matched===emojis.length)finishGame();
+  }else{
+    first.classList.remove("flipped");
+    second.classList.remove("flipped");
+  }
+  first=second=null;lock=false;
+}
+function restartGame(){matched=0;first=second=null;lock=false;createBoard();}
+function goBack(){
+  document.getElementById("gamePage").style.display="none";
+  document.getElementById("entryPage").style.display="flex";
+}
+function finishGame(){
+  document.getElementById("gamePage").style.display="none";
+  document.getElementById("congratsPage").style.display="flex";
+  document.getElementById("winnerText").textContent=`Great job, ${player}! You found all pairs!`;
+  launchCheers();
+}
+function backHome(){
+  document.getElementById("congratsPage").style.display="none";
+  document.getElementById("entryPage").style.display="flex";
+  clearCheers();
+}
+function launchCheers(){
+  const cheers=document.getElementById("cheers");
+  clearCheers();
+  const colors=['#00d4ff','#0077ff','#ff5c93','#ffcc00','#7cfc00','#ff8c00'];
+  for(let i=0;i<120;i++){
+    const p=document.createElement("div");
+    p.className="particle";
+    p.style.left=Math.random()*100+"%";
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.width=p.style.height=8+Math.random()*8+"px";
+    p.style.animationDuration=2+Math.random()*2+"s";
+    cheers.appendChild(p);
+    setTimeout(()=>p.remove(),4000);
+  }
+}
+function clearCheers(){document.getElementById("cheers").innerHTML="";}
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Weather App | Aniket Sharma</title>
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif}
+body{
+  height:100vh;overflow:hidden;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:radial-gradient(circle at 30% 30%,#040a16,#081a30,#0b2949);
+  color:#fff;position:relative;
+}
+
+/* --- HEAVY RAIN --- */
+.rain{position:absolute;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;overflow:hidden;z-index:1;}
+.drop{
+  position:absolute;width:2px;height:25px;
+  background:rgba(0,255,255,0.8);bottom:100%;
+  box-shadow:0 0 8px rgba(0,255,255,.7);
+  animation:fall linear infinite;
+}
+@keyframes fall{to{transform:translateY(110vh);opacity:.1}}
+
+/* --- LIGHTNING FLASH --- */
+.flash{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.9),transparent 70%);
+  opacity:0;pointer-events:none;z-index:2;
+  animation:stormFlash 7s infinite;
+}
+@keyframes stormFlash{
+  0%,94%,100%{opacity:0;}
+  95%{opacity:1;}
+  96%{opacity:.2;}
+  97%{opacity:1;}
+  98%{opacity:.4;}
+  99%{opacity:0;}
+}
+
+/* --- ⚡ ELECTRIC STRIKES --- */
+.bolt{
+  position:absolute;width:4px;height:140px;
+  background:linear-gradient(180deg,#00ffff 0%,transparent 100%);
+  border-radius:3px;opacity:0;z-index:3;
+  animation:boltFlash 7s infinite;
+}
+@keyframes boltFlash{
+  0%,94%,100%{opacity:0;transform:scaleY(0);}
+  95%{opacity:1;transform:scaleY(1);}
+  97%{opacity:0;}
+}
+
+/* --- MAIN CARD --- */
+.app{
+  background:rgba(255,255,255,0.08);
+  border-radius:16px;padding:30px 25px;width:350px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  text-align:center;backdrop-filter:blur(10px);position:relative;z-index:5;
+}
+h1{font-size:1.6rem;margin-bottom:20px}
+.search-box{display:flex;justify-content:center;gap:8px;margin-bottom:25px}
+input{
+  flex:1;padding:10px;border:none;border-radius:8px;outline:none;
+  font-size:1rem;background:#ffffff15;color:#fff;
+}
+button{
+  background:linear-gradient(135deg,#00ffcc,#0099ff);
+  border:none;border-radius:8px;padding:10px 14px;font-size:1.1rem;
+  color:#000;cursor:pointer;font-weight:600;transition:.3s;
+}
+button:hover{transform:scale(1.05);box-shadow:0 0 10px #00ccff}
+.weather{display:none;animation:fade .6s ease forwards}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.weather-icon{font-size:3rem;margin-bottom:10px}
+.temp{font-size:2rem;font-weight:600;margin-bottom:8px}
+.city{font-size:1.1rem;margin-bottom:8px}
+.details{font-size:.95rem;color:#ccc}
+footer{margin-top:20px;font-size:1rem;color:#ccc;position:relative;z-index:5}
+a{color:#00ffcc;text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND EFFECTS -->
+<div class="rain" id="rain"></div>
+<div class="flash"></div>
+<div class="bolt" style="left:25%"></div>
+<div class="bolt" style="left:70%"></div>
+
+<!-- WEATHER APP -->
+<div class="app">
+  <h1>⚡ Weather App</h1>
+  <div class="search-box">
+    <input type="text" id="cityInput" placeholder="Enter city name...">
+    <button id="searchBtn"><i class='bx bx-search'></i></button>
+  </div>
+  <div class="weather" id="weather">
+    <div class="weather-icon" id="icon">☀️</div>
+    <div class="temp" id="temp">--°C</div>
+    <div class="city" id="city">City Name</div>
+    <div class="details" id="details">Wind: -- km/h | Humidity: --%</div>
+  </div>
+</div>
+
+<footer><p><a href="a8.html">← Back to Portfolio</a></p></footer>
+
+<script>
+/* create heavy rain */
+const rain=document.getElementById("rain");
+for(let i=0;i<200;i++){
+  const drop=document.createElement("div");
+  drop.classList.add("drop");
+  drop.style.left=Math.random()*100+"%";
+  drop.style.animationDuration=(0.2+Math.random()*0.6)+"s";
+  drop.style.height=10+Math.random()*25+"px";
+  rain.appendChild(drop);
+}
+
+/* simple weather fetch */
+const apiKey="41ad0a27a15ff96900904934445c5db5"; // replace with your key
+const input=document.getElementById("cityInput");
+const btn=document.getElementById("searchBtn");
+const weatherBox=document.getElementById("weather");
+const icon=document.getElementById("icon");
+const temp=document.getElementById("temp");
+const city=document.getElementById("city");
+const details=document.getElementById("details");
+
+async function getWeather(cityName){
+  if(!cityName)return alert("Please enter a city name.");
+  try{
+    const url=`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
+    const res=await fetch(url);
+    const data=await res.json();
+    if(data.cod===200){
+      const weatherMain=data.weather[0].main;
+      const icons={Clouds:'☁️',Rain:'🌧️',Clear:'☀️',Snow:'❄️',Thunderstorm:'⚡',Drizzle:'🌦️',Mist:'🌫️'};
+      icon.textContent=icons[weatherMain]||'🌈';
+      temp.textContent=`${Math.round(data.main.temp)}°C`;
+      city.textContent=`${data.name}, ${data.sys.country}`;
+      details.textContent=`Wind: ${data.wind.speed} km/h | Humidity: ${data.main.humidity}%`;
+      weatherBox.style.display="block";
+    }else{
+      alert("City not found!");weatherBox.style.display="none";
+    }
+  }catch(e){alert("Unable to fetch weather data.");console.error(e);}
+}
+btn.addEventListener("click",()=>getWeather(input.value));
+input.addEventListener("keypress",e=>{if(e.key==="Enter")getWeather(input.value);});
+</script>
+</body>
+</html>

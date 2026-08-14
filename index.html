@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aniket Sharma | MCA Portfolio</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="a10.css" />
+</head>
+
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="#home" class="logo">Aniket<span> Sharma</span></a>
+        <nav class="navbar">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#certifications" class="nav-link">Certifications</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="nav-right">
+                <button id="theme-toggle" aria-label="Toggle theme"><i class='bx bx-moon'></i></button>
+    <i class='bx bx-menu' id="menu-icon"></i>
+        </div>
+    </header>
+
+    <!-- HOME -->
+    <section class="home" id="home">
+        <!-- Particle Background -->
+        <div id="tsparticles"></div>
+        <div class="home-content">
+            <h1 class="home-title">I'm Aniket Sharma</h1>
+            <h2 id="typing-text" class="typing-role"></h2>
+
+            <p>
+                I’m a Computer Application student with a strong interest in Data Science, Machine Learning, and Artificial Intelligence. I enjoy working with data to discover meaningful insights, build predictive models, and solve real-world problems using data-driven approaches.
+
+            </p>
+
+            <div class="social-icons">
+                <a href="https://github.com/aniket6391" target="_blank"><i class="bx bxl-github" ></i></a>
+                <a href="https://www.linkedin.com/in/aniketsharma6391/"target="_blank" ><i class="bx bxl-linkedin-square"></i></a>
+                <a href="https://www.instagram.com/anikets6391/" target="_blank"><i class="bx bxl-instagram-alt"></i></a>
+                <a href="https://x.com/Anikets6391" target="_blank"><i class="bx bxl-twitter"></i></a>
+            </div>
+
+           <div class="btn-group">
+                <a href="resume.pdf" class="btn" download="Aniket_Sharma_CV.pdf">Download CV</a>
+                <a href="#contact" class="btn">Contact</a>
+            </div>
+        </div> 
+    
+        
+
+        <div class="home-img">
+            <img src="data_science.jpg" alt="Data Science Illustration" />
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+   <section class="about" id="about">
+  <h2 class="section-title">About <span>Me</span></h2>
+  <div class="about-container">
+    <div class="about-img">
+      <img src="aniket.jpg" alt="MCA Student" />
+    </div>
+
+    <div class="about-text">
+      <p class="about-lead">I'm a Data Science and AI enthusiast currently pursuing a Master of Computer Applications (MCA), I have a strong interest in <span class="highlight"> Software Development, Data Science, Machine Learning, Artificial Intelligence, and Data Analytics</span>.</p>
+
+      <p>My technical expertise focused on <span class="highlight"> Data Science </span>and <span class="highlight"> Software Development</span>, with a strong focus on turning data into actionable insights. I specialize in Machine learning, Predictive analytics, Data visualization, and intelligent Application development.  </p>
+
+      <div class="about-highlights">
+          <div class="highlight-item">
+              <i class="bx bx-code-alt"></i>
+              <div>
+                  <h4>Core Skills</h4>
+                  <p>C++, Python, SQL, Pandas, Scikit-learn</p>
+              </div>
+          </div>
+          <div class="highlight-item">
+              <i class="bx bx-brain"></i>
+              <div>
+                  <h4>Focus Areas</h4>
+                  <p>Data Science, Machine Learning, Predictive Analytics</p>
+              </div>
+          </div>
+          <div class="highlight-item">
+              <i class="bx bx-target-lock"></i>
+              <div>
+                  <h4>Career Goal</h4>
+                  <p>Software Developer, Data Scientist / Data Analyst</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="github-stats" style="margin-top: 30px; display: flex; justify-content: flex-start;">
+          <img src="https://streak-stats.demolab.com?user=aniket6391&theme=dark&hide_border=true&background=141414&ring=00ff88&fire=00ff88&currStreakLabel=00ff88" alt="GitHub Stats" style="width: 100%; max-width: 450px; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.2); transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- SKILLS -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Technical <span>Skills</span></h2>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="bx bxl-c-plus-plus"></i>
+                <h3>C++</h3>
+                <p>Strong understanding of data structures, algorithms, and core programming concepts for building high-performance applications.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bxl-php"></i>
+                <h3>PHP</h3>
+                <p>Experienced in backend scripting and server-side logic using PHP to build dynamic web applications and database integrations.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bxl-python"></i>
+                <h3>Python</h3>
+                <p>Extensive experience in programming for data analysis, machine learning models, and building scalable backend applications.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bx-server"></i>
+                <h3>SQL & Databases</h3>
+                <p>Proficient in querying, managing, and analyzing large datasets using SQL, MySQL, and Oracle relational database systems.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bx-bar-chart-alt-2"></i>
+                <h3>Data Analysis</h3>
+                <p>Skilled in using Pandas, NumPy, and Matplotlib to clean data, identify meaningful patterns, and create compelling visual reports.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bx-brain"></i>
+                <h3>Machine Learning</h3>
+                <p>Passionate about building predictive models using Scikit-learn and applying AI algorithms to solve real-world problems.</p>
+            </div>
+            
+            <div class="skill-card">
+                <i class="bx bxl-java"></i>
+                <h3>Java & OOPs</h3>
+                <p>Strong foundation in Object-Oriented Programming principles and enterprise application development using Java.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bx-code-alt"></i>
+                <h3>Web Development</h3>
+                <p>Familiar with frontend technologies like HTML5, CSS3, and JavaScript to create interactive and responsive user interfaces.</p>
+            </div>
+        </div>
+
+        <h3 class="subsection-title">Soft <span>Skills</span></h3>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="bx bx-bulb"></i>
+                <h3>Problem-Solving</h3>
+                <p>Ability to break down complex issues, think critically, and find effective solutions.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bx-sync"></i>
+                <h3>Adaptability & Quick Learning</h3>
+                <p>Eager to learn new tools quickly and easily adjust to changing project requirements.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bx-time-five"></i>
+                <h3>Time Management</h3>
+                <p>Highly organized with a focus on prioritizing tasks to consistently meet deadlines.</p>
+            </div>
+
+            <div class="skill-card">
+                <i class="bx bx-group"></i>
+                <h3>Team Work</h3>
+                <p>Collaborative and communicative, working well with others to achieve shared goals.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- EDUCATION -->
+    <section class="education" id="education">
+        <h2 class="section-title"><span>Education</span></h2>
+
+        <div class="education-outer-box">
+            <div class="edu-magic-grid" id="magic-grid">
+
+            <div class="magic-card">
+                <div class="magic-card-content has-bg">
+                    <div class="bg-image" style="background-image: url('images/lpu.jfif');"></div>
+                    <div class="magic-header">
+                        <div class="magic-icon"><i class='bx bxs-graduation'></i></div>
+                        <span class="magic-year">2025 — PRESENT</span>
+                    </div>
+                    <div class="magic-body">
+                        <h3>Master of Computer Applications</h3>
+                        <p>Lovely Professional University • Phagwara, Punjab</p>
+                    </div>
+                    <div class="magic-footer">
+                        <div class="magic-line line-left"></div>
+                        <div class="magic-grade">CGPA 8.14</div>
+                        <div class="magic-line line-right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="magic-card">
+                <div class="magic-card-content has-bg">
+                    <div class="bg-image" style="background-image: url('images/ycmou.jfif');"></div>
+                    <div class="magic-header">
+                        <div class="magic-icon"><i class='bx bxs-book-open'></i></div>
+                        <span class="magic-year">2021 — 2024</span>
+                    </div>
+                    <div class="magic-body">
+                        <h3>Bachelor of Computer Applications</h3>
+                        <p>YCMOU • Nashik, Maharashtra</p>
+                    </div>
+                    <div class="magic-footer">
+                        <div class="magic-line line-left"></div>
+                        <div class="magic-grade">CGPA 6.80</div>
+                        <div class="magic-line line-right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="magic-card">
+                <div class="magic-card-content has-bg">
+                    <div class="bg-image" style="background-image: url('images/gic.jfif');"></div>
+                    <div class="magic-header">
+                        <div class="magic-icon"><i class='bx bxs-school'></i></div>
+                        <span class="magic-year">2019 — 2020</span>
+                    </div>
+                    <div class="magic-body">
+                        <h3>Intermediate School</h3>
+                        <p>Government Inter College • Deoria, UP</p>
+                    </div>
+                    <div class="magic-footer">
+                        <div class="magic-line line-left"></div>
+                        <div class="magic-grade">71.40%</div>
+                        <div class="magic-line line-right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="magic-card">
+                <div class="magic-card-content has-bg">
+                    <div class="bg-image" style="background-image: url('images/gic.jfif');"></div>
+                    <div class="magic-header">
+                        <div class="magic-icon"><i class='bx bx-building-house'></i></div>
+                        <span class="magic-year">2017 — 2018</span>
+                    </div>
+                    <div class="magic-body">
+                        <h3>High School</h3>
+                        <p>Government Inter College • Deoria, UP</p>
+                    </div>
+                    <div class="magic-footer">
+                        <div class="magic-line line-left"></div>
+                        <div class="magic-grade">83.83%</div>
+                        <div class="magic-line line-right"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+<section class="certifications" id="certifications">
+  <h2 class="section-title"><span>Certifications</span></h2>
+
+  <div class="certifications-grid">
+
+    <a href="images/data_science.jpg" class="certificate" target="_blank">
+      <img src="images/data_science.jpg" alt="IBM Python for Data Science Certificate">
+      <h3>Python for Data Science</h3>
+    </a>
+
+    <a href="images/codeathon.jpg" class="certificate" target="_blank">
+      <img src="images/codeathon.jpg" alt="Code-A-Thon 2025 Certificate">
+      <h3>Code-A-Thon 2025</h3>
+    </a>
+
+    <a href="website.jpg" class="certificate" target="_blank">
+      <img src="website.jpg" alt="HTML & CSS Certificate">
+      <h3>HTML & CSS</h3>
+    </a>
+
+     <a href="java.jpg" class="certificate" target="_blank">
+      <img src="java.jpg" alt="java Foundation Certificate">
+      <h3>java Foundation Basics</h3>
+    </a>
+
+    <a href="cybersecurity.jpg" class="certificate" target="_blank">
+      <img src="cybersecurity.jpg" alt="Cyber Security Certificate">
+      <h3>Cyber Security Basics</h3>
+    </a>
+
+    <a href="oracle.jpg" class="certificate" target="_blank">
+      <img src="oracle.jpg" alt="Oracle AI/ML Certificate">
+      <h3>Oracle AI/ML Foundations</h3>
+    </a>
+
+    <a href="python.jpg" class="certificate" target="_blank">
+      <img src="python.jpg" alt="Python Certificate">
+      <h3>Python</h3>
+    </a>
+
+    <a href="quiz.jpg" class="certificate" target="_blank">
+      <img src="quiz.jpg" alt="Viksit Bharat Quiz Certificate">
+      <h3> Quiz</h3>
+    </a>
+
+  </div>
+</section>
+
+    
+    
+
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+        <h2> <span>Projects</span></h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Apps</button>
+            <button class="filter-btn" data-filter="ml">AI & ML</button>
+        </div>
+
+        <div class="projects-grid">
+           <div class="project-card" data-category="ml">
+              <a href="https://lnkd.in/gRwi4AVB" target="_blank">
+                <img src="images/Retail.png" alt="Retail Demand Forecasting System" />
+                <h3> Retail Demand Forecasting</h3>
+                <p>A Machine Learning system built with Python to predict future product demand from historical sales, inventory, and seasonal trends.</p>
+              </a>
+            </div>
+
+
+
+           <div class="project-card" data-category="web">
+              <a href="https://lnkd.in/gfhUwumB" target="_blank">
+                <img src="images/smart.png" alt="Smart Complaint System" />
+                <h3> Smart Complaint System</h3>
+                <p>Smart complaint and emergency response platform designed for real-time complaint reporting, emergency alerts, location tracking, and faster response coordination.</p>
+              </a>
+            </div>
+
+           <div class="project-card" data-category="ml">
+              <a href="https://github.com/aniket6391/Trace_ID" target="_blank">
+                <img src="images/traceid.png" alt="TraceId System" />
+                <h3> TraceId Biometric System</h3>
+                <p>An AI-based biometric identification platform featuring secure fingerprint matching and MongoDB integration for reliable authentication.</p>
+              </a>
+            </div>
+
+           <div class="project-card" data-category="ml">
+              <a href="https://github.com/aniket6391/AI-Sign-Language-Translator" target="_blank">
+                <img src="images/sign.png" alt="AI Sign Language Translator" />
+                <h3> AI Sign Language Translator</h3>
+                <p>An intelligent system that leverages Computer Vision and Machine Learning to translate sign language gestures into text in real-time.</p>
+              </a>
+            </div>
+
+           <div class="project-card" data-category="web">
+              <a href="index1.html" target="_blank">
+                <img src="resume.jpg" alt="Portfolio Website" />
+                <h3> AI Resume Builder</h3>
+                <p>An intelligent application that helps users effortlessly generate professional and customized resumes.</p>
+              </a>
+            </div>
+            
+            <div class="project-card" data-category="web">
+                <a href="mindMatch.html" target="_blank">
+                  <img src="mindmatch.jpg" alt="mindMatch">
+                  <h3> MindMatch Memory Game</h3>
+                  <p>An interactive and engaging memory game built to challenge cognitive skills through pattern matching.</p>
+                </a>
+            </div>
+            
+            <div class="project-card" data-category="web">
+                <a href="weather.html" target="_blank">
+                  <img src="weather.jpg" alt="Weather App">
+                  <h3>Live Weather Track</h3>
+                  <p>A dynamic web application fetching real-time weather data and forecasts using APIs.</p>
+                </a>
+            </div>
+    
+            <div class="project-card" data-category="web">
+              <a href="quiz.html" target="_blank">
+                <img src="quiz0.jpg" alt="Quiz Portal">
+                <h3>Online Quiz Portal</h3>
+                <p>A comprehensive platform for creating, taking, and evaluating quizzes with immediate feedback.</p>
+              </a>
+           </div>
+        </div>
+    </section> 
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <h2 class="section-title"><span>Contact</span></h2>
+        
+        <div class="contact-main">
+            <div class="contact-form">
+                <h3>Contact <span>Me</span></h3>
+                <form id="contact-form">
+                  <input type="text" name="from_name" placeholder="Your Name" required />
+                  <input type="tel" name="contact_number" placeholder="Your Contact " pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" required />
+                  <input type="email" name="reply_to" placeholder="Your Email" pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@gmail.com)" required />
+                  <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                  <button type="submit" class="btn">Send Message</button>
+                </form>
+                <p id="form-status" style="margin-top:10px;"></p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Get in <span>Touch</span></h3>
+                <div class="info-item">
+                    <i class='bx bx-phone'></i>
+                    <a href="tel:+916391915300" class="contact-link">+91 6391915300</a>
+                </div>
+                <div class="info-item">
+                    <i class='bx bx-envelope'></i>
+                    <a href="mailto:aniket6391915300@gmail.com" class="contact-link">aniket6391915300@gmail.com</a>
+                </div>
+                <div class="info-item">
+                    <i class='bx bxl-instagram'></i>
+                    <a href="https://www.instagram.com/anikets6391/" target="_blank" class="contact-link">instagram.com/aniket_sharma</a>
+                </div>
+                <div class="info-item">
+                    <i class='bx bxl-linkedin-square'></i>
+                    <a href="https://www.linkedin.com/in/aniketsharma6391/" target="_blank" class="contact-link">linkedin.com/in/aniket-sharma</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 <span class="footer-name">Aniket Sharma</span> <span class="footer-divider">|</span> Master of Computer Applications <span class="footer-divider">|</span> All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Education Magic Spotlight Script -->
+    <script>
+      const magicGrid = document.getElementById('magic-grid');
+      if(magicGrid) {
+        magicGrid.onmousemove = e => {
+          for(const card of document.querySelectorAll('.magic-card')) {
+            const rect = card.getBoundingClientRect(),
+                  x = e.clientX - rect.left,
+                  y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          }
+        }
+      }
+    </script>
+
+    <!-- EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+      (function() {
+        emailjs.init("9JGlnxR82NumRbBfs"); // your public key
+      })();
+    </script>
+    
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+
+    <script src="a10.js"></script>
+</body>
+
+</html>
