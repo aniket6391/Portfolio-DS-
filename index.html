@@ -109,10 +109,15 @@
           </div>
       </div>
 
-      <div class="github-stats" style="margin-top: 30px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start;">
-          <img src="https://github-readme-streak-stats.herokuapp.com?user=aniket6391&theme=dark&hide_border=true&background=141414&ring=00ff88&fire=00ff88&currStreakLabel=00ff88" alt="GitHub Streak" style="width: 100%; max-width: 450px; height: auto; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.2); transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
-          <img src="https://github-readme-stats-eight-theta.vercel.app/api?username=aniket6391&show_icons=true&theme=dark&hide_border=true&bg_color=141414&icon_color=00ff88&title_color=00ff88&text_color=ffffff&include_all_commits=true" alt="GitHub Total Contributions" style="width: 100%; max-width: 450px; height: auto; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.2); transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      <div class="github-stats" style="margin-top: 30px; display: flex; justify-content: flex-start;">
+          <img id="github-streak-img" src="https://github-readme-streak-stats.herokuapp.com?user=aniket6391&theme=dark&hide_border=true&background=141414&ring=00ff88&fire=00ff88&currStreakLabel=00ff88" alt="GitHub Stats" style="width: 100%; max-width: 450px; height: auto; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.2); transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
       </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const img = document.getElementById("github-streak-img");
+          if(img) img.src = img.src + "&t=" + new Date().getTime();
+        });
+      </script>
     </div>
   </div>
 </section>
