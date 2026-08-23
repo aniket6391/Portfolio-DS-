@@ -792,7 +792,7 @@ padding: 120px 10% 100px 10%;
 /* Grid layout */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   padding: 20px;
   margin-top: 20px;
@@ -818,7 +818,8 @@ transform: translateY(-10px);
 .project-card img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #000;
 }
 .project-card h3 {
   color: var(--main-color);
